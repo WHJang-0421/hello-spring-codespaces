@@ -7,7 +7,7 @@
 - create, modify, delete tasks with:
     - title, status, due date
 
-# API specification
+## API specification
 - Authentication: using OAuth v2 with JWT
 - Endpoints: https://docs.google.com/spreadsheets/d/1BDVMjfz3A6nhMbeKNtg6jcIH4GBlXf8RYZKe_GGlYng/edit?usp=sharing  
 - Error codes:  
