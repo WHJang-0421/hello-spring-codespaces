@@ -3,3 +3,6 @@ spring:
     name: hello-codespaces
   profiles:
     default: dev
+  jpa:
+    hibernate:
+      ddl-auto: update

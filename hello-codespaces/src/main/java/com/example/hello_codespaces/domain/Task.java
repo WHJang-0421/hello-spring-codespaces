@@ -7,10 +7,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Builder;
 
 @Getter
 @Entity
+@NoArgsConstructor
 @Table(name="task")
 public class Task {
     @Id
