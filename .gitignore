@@ -1,3 +1,6 @@
+# database config
+src/main/resources/application-dev.yml
+
 # Compiled class files
 *.class
 
