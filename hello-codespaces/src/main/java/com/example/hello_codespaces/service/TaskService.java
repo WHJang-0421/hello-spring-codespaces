@@ -3,17 +3,16 @@ package com.example.hello_codespaces.service;
 import com.example.hello_codespaces.domain.Task;
 import com.example.hello_codespaces.dto.TaskDto;
 import com.example.hello_codespaces.repository.TaskRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class TaskService {
-    private final TaskRepository taskRepository;
-
-    public TaskService(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
+    @Autowired
+    private TaskRepository taskRepository;
 
     public void saveTask(TaskDto taskDto) {
         Task task = Task.builder()
