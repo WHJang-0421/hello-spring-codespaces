@@ -35,17 +35,17 @@ public class TaskController {
     }
     
     @GetMapping("/api/v1/tasks/{id}")
-    public TaskDto findTaskById(@PathVariable long id) {
+    public TaskDto findTaskById(@PathVariable String id) {
         return taskService.findTaskById(id);
     }
     
     @PutMapping("/api/v1/tasks/{id}")
-    public void updateTaskById(@PathVariable long id, @RequestBody TaskDto taskDto) {
+    public void updateTaskById(@PathVariable String id, @RequestBody TaskDto taskDto) {
         taskService.updateTaskById(id, taskDto);
     }
 
     @DeleteMapping("/api/v1/tasks/{id}")
-    public void deleteTaskById(@PathVariable long id) {
+    public void deleteTaskById(@PathVariable String id) {
         taskService.deleteTaskById(id);
     }
 }

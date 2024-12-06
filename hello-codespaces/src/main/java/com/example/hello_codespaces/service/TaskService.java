@@ -18,6 +18,7 @@ public class TaskService {
 
     public void saveTask(TaskDto taskDto) {
         Task task = Task.builder()
+                .id(taskDto.getId())
                 .title(taskDto.getTitle())
                 .finished(taskDto.isFinished())
                 .due(taskDto.getDue())
@@ -26,7 +27,7 @@ public class TaskService {
         taskRepository.save(task);
     }
 
-    public TaskDto findTaskById(long id) {
+    public TaskDto findTaskById(String id) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                         "task with id " + id + " not found"));
@@ -51,13 +52,13 @@ public class TaskService {
                 .toList();
     }
 
-    public void updateTaskById(long id, TaskDto taskDto) {
+    public void updateTaskById(String id, TaskDto taskDto) {
         Task task = taskRepository.getReferenceById(id);
         task.updateTask(taskDto.getTitle(), taskDto.isFinished(), taskDto.getDue());
         taskRepository.save(task);
     }
 
-    public void deleteTaskById(long id) {
+    public void deleteTaskById(String id) {
         taskRepository.deleteById(id);
     }
 }
