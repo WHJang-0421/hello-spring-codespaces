@@ -16,18 +16,23 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public void saveTask(TaskDto taskDto) {
+    public TaskDto saveTask(TaskDto taskDto) {
         Task task = Task.builder()
-                .id(taskDto.getId())
                 .title(taskDto.getTitle())
                 .finished(taskDto.isFinished())
                 .due(taskDto.getDue())
                 .build();
 
-        taskRepository.save(task);
+        task = taskRepository.save(task);
+        return TaskDto.builder()
+                .id(task.getId())
+                .title(task.getTitle())
+                .finished(task.isFinished())
+                .due(task.getDue())
+                .build();
     }
 
-    public TaskDto findTaskById(String id) {
+    public TaskDto findTaskById(long id) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                         "task with id " + id + " not found"));
@@ -52,13 +57,13 @@ public class TaskService {
                 .toList();
     }
 
-    public void updateTaskById(String id, TaskDto taskDto) {
+    public void updateTaskById(long id, TaskDto taskDto) {
         Task task = taskRepository.getReferenceById(id);
         task.updateTask(taskDto.getTitle(), taskDto.isFinished(), taskDto.getDue());
         taskRepository.save(task);
     }
 
-    public void deleteTaskById(String id) {
+    public void deleteTaskById(long id) {
         taskRepository.deleteById(id);
     }
 }

@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 @Builder
 public class TaskDto {
-    private String id;
+    private long id;
     private String title;
     private boolean finished;
     private Date due;

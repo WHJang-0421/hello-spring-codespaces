@@ -1,10 +1,7 @@
-// TODO: PUT이 안됨
-
 import './App.css';
 
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import { nanoid } from "nanoid";
 
 import Item from './Item'
 
@@ -30,17 +27,19 @@ export default function App() {
       const text = e.target.value;
       inputRef.current.value = "";
 
-      setTodos([
-        ...todos,
-        { title: text, finished: false, id: nanoid(), due: Date.now() }
-      ]);
-
       axios.post('/api/v1/tasks', {
-        id: nanoid(),
         title: text,
         finished: false,
         due: Date.now()
       })
+        .then((response) => {
+          let item = response.data;
+          item.key = item.id;
+          setTodos([
+            ...todos,
+            item
+          ])
+        })
         .catch((error) => {
           console.log("Error while fetching tasks:", error);
         });
