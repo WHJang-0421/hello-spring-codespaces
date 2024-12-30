@@ -5,6 +5,7 @@ import java.util.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,9 @@ public class Task {
     private String title;
     private boolean finished;
     private Date due;
+
+    @ManyToOne
+    private User user;
 
     @Builder
     public Task(String title, boolean finished, Date due) {
